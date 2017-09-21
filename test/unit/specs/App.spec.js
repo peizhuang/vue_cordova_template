@@ -7,7 +7,8 @@ describe('App.vue', () => {
   const vm = new Constructor({ store }).$mount()
 
   it('provides a closed menu by default', () => {
-    expect(vm.menuIsOpen)
-      .to.equal(false)
+    console.log(vm.$el)
+    expect(vm.$el.id)
+      .to.equal('app')
   })
 })

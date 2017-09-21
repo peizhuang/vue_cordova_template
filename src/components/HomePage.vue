@@ -9,7 +9,9 @@
   export default {
     name: 'home',
     data () {
-      return {}
+      return {
+        test: true
+      }
     },
     components: {
       test
