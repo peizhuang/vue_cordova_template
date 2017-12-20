@@ -1,29 +1,34 @@
-<template>
-  <!--<v-ons-page id="app">
-    <v-ons-splitter>
-      <v-ons-splitter-side swipeable collapse width="250px"
-        :animation="$ons.platform.isAndroid() ? 'overlay' : 'reveal'"
-        :open.sync="menuIsOpen">
-        <menu-page></menu-page>
-      </v-ons-splitter-side>
+<style lang="less">
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    }
 
-      <v-ons-splitter-content>
-        <home-page></home-page>
-      </v-ons-splitter-content>
-    </v-ons-splitter>
-  </v-ons-page>-->
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    html, body {
+        height: 100%;
+        width: 100%;
+        -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+        -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+        -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+    }
+
+    #app {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+<template>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
   export default {
-    name: 'app'
+    data () {
+      return {}
+    }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

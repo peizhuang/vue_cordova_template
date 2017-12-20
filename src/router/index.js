@@ -1,15 +1,20 @@
-/**
- * Created by san on 2017/9/15.
- */
 import Vue from 'vue'
 import Router from 'vue-router'
-import routes from './routes'
+// const Recognition = resolve => require(['@/components/FaceRecognition'], resolve)
+const Sign = resolve => require(['@/components/telephone'], resolve)
 
 Vue.use(Router)
 
 export default new Router({
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    return {x: 0, y: 0}
-  }
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'FaceSign',
+      meta: {
+        title: 'FaceId Sign'
+      },
+      component: Sign
+    }
+  ]
 })

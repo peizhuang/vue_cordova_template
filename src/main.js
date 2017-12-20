@@ -1,51 +1,46 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-
 import axios from 'axios'
-import cordova from './cordova'
+import promiseFinally from 'promise.prototype.finally'
+import qs from 'qs'
+
+import fontawesome from '@fortawesome/fontawesome'
+import {faImages, faCheckCircle, faTimesCircle, faTimes, faAngleLeft} from '@fortawesome/fontawesome-free-solid'
 
 import Vue from 'vue'
-import store from './store'
 import router from './router'
 import App from './App'
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 window.cordovaLog = true
 
+fontawesome.library.add(faImages, faCheckCircle, faTimesCircle, faTimes, faAngleLeft)
+
+promiseFinally.shim()
 axios.defaults.withCredentials = true
-axios.defaults.timeout = 15000
-axios.defaults.baseURL = ''
-console.log(12)
+axios.defaults.timeout = 60000
+axios.defaults.baseURL = 'http://eshop.erathinkcd.com'
 
 axios.interceptors.request.use((config) => {
+  return config
 }, (error) => {
   console.error(error)
+  return Promise.reject(error)
 })
 
 axios.interceptors.response.use((response) => {
+  console.log(response)
+  return response.data
 }, (error) => {
   console.error(error)
+  return Promise.reject(error.response.data)
 })
 Vue.prototype.$axios = axios
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.length === 0) {
-    /* 对于未匹配的路径, 跳转到正在建设页面：提示正在建设中 */
-    next('/construction')
-  } else {
-    document.title = to.meta.title
-    next()
-  }
-})
+Vue.prototype.$qs = qs
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  store,
   router,
-  template: '<App/>',
-  components: {App},
-  mounted () {
-    cordova.event.onReady()
-  }
+  template: '<app></app>',
+  components: {App}
 })
