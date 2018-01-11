@@ -6,7 +6,7 @@ const Sign = resolve => require(['@/components/telephone'], resolve)
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',  cordova 项目一定要关闭该选项
   routes: [
     {
       path: '/',
